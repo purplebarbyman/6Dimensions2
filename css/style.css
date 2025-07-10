@@ -1,54 +1,108 @@
 :root {
-  --primary: #1e90ff;
-  --accent: #ff9800;
-  --bg: #fafafa;
-  --card: #fff;
-  --border: #e0e0e0;
-  --success: #4caf50;
-  --warn: #ff5722;
-  --danger: #f44336;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  --primary: #2563eb;
+  --accent: #f59e0b;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
 }
 
-html,
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
 }
 
-header {
-  padding: 1rem;
+.hero-banner {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
   text-align: center;
-  background: var(--primary);
-  color: #fff;
+  padding: 2rem 1rem;
 }
 
-h1,
-h2 {
-  margin: .5em 0;
+.hero-banner h1 {
+  margin: 0 0 1rem 0;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 
 .card {
-  max-width: 720px;
+  max-width: 800px;
   margin: 2rem auto;
-  padding: 1.5rem;
+  padding: 2rem;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .hidden {
-  display: none;
+  display: none !important;
+}
+
+fieldset {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--primary);
+  padding: 0 0.5rem;
+}
+
+label {
+  display: block;
+  margin: 1rem 0;
+  font-weight: 500;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .btn {
-  margin: .5rem;
-  padding: .6rem 1.2rem;
-  border: 0;
-  border-radius: 5px;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
   background: var(--primary);
-  color: #fff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
   cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn.primary {
@@ -56,48 +110,109 @@ h2 {
 }
 
 .btn:disabled {
-  opacity: .6;
+  opacity: 0.6;
   cursor: not-allowed;
-}
-
-.dimension {
-  border-top: 1px solid var(--border);
-  padding-top: .8rem;
-  margin-top: .8rem;
+  transform: none;
 }
 
 #canvasWrapper {
-  margin: 1rem 0;
-  text-align: center
+  text-align: center;
+  margin: 2rem 0;
 }
 
 canvas {
-  background: #eef;
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  background: #f0f4f8;
+  border: 2px solid var(--border);
+  border-radius: 8px;
 }
 
-#gallery {
+.options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+#scoreList {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+#scoreList li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Gallery Styles */
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
 }
 
 .heroCard {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
   position: relative;
-  width: 180px;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+.heroCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.heroCard img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   border-radius: 8px;
-  text-align: center
+  margin-bottom: 1rem;
 }
 
 .timer {
   position: absolute;
-  top: 6px;
-  right: 8px;
-  font-size: .8rem;
-  color: var(--warn);
+  top: 10px;
+  right: 10px;
+  background: var(--warning);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-banner h1 {
+    font-size: 2rem;
+  }
+
+  .card {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
 }
