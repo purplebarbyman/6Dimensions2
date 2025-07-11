@@ -195,3 +195,16 @@ function goto(id){
   document.getElementById(id).classList.remove('hidden');
 }
 function caps(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+// Add this to the end of js/app.js
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('ServiceWorker registration successful: ', registration.scope);
+      })
+      .catch(error => {
+        console.log('ServiceWorker registration failed: ', error);
+      });
+  });
+}
