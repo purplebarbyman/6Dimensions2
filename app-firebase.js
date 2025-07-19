@@ -81,14 +81,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const heroForm = document.getElementById("heroForm");
   if (heroForm) {
-    heroForm.addEventListener("submit", (e) => {
+    heroForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const data = Object.fromEntries(new FormData(heroForm).entries());
-      console.log("Hero Data:", data);
-      alert(`Hero Created!
-Name: ${data.powerWord}
-Tagline: "${data.tagline}"
-Emoji: ${data.emoji}`);
+      const heroData = {
+        name: data.powerWord,
+        costume: data.costume,
+        tagline: data.tagline,
+        emoji: data.emoji,
+        created: new Date()
+      };
+
+      try {
+        const docRef = await firebase.firestore().collection("heroes").add(heroData);
+        await captureAndUploadPreview(docRef.id);
+
+        alert("Superhero saved successfully!");
+        heroForm.reset();
+        document.getElementById("hero-preview").classList.add("hidden");
+        showSection("main");
+      } catch (err) {
+        console.error("Error saving superhero:", err);
+        alert("There was an error saving your superhero.");
+      }
     });
   }
 });
