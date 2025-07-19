@@ -1,91 +1,155 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wellness Superhero Builder</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="dark-theme">
-  <main>
+<body>
+  <header>
+    <h1>Unleash Your Wellness Superpowers</h1>
+  </header>
 
-    <!-- Welcome Section -->
-    <section id="welcome" class="section visible">
-      <div class="card centered-card">
-        <h1>Unleash Your Wellness Superpowers</h1>
-        <p>Discover your top wellness strengths and build your custom superhero.</p>
-        <button id="start-journey" class="btn primary">✨ Begin Your Wellness Journey →</button>
+  <!-- Welcome Screen -->
+  <section id="welcome" class="card">
+    <h2>🦸‍♂️ Welcome to the Wellness Superhero Builder</h2>
+    <p>Discover your wellness superpowers through the Six Dimensions of Wellness</p>
+
+    <div class="dimension-grid">
+      <div class="dimension-card">
+        <h3>Physical Wellness</h3>
+        <p>Your body’s health and vitality through exercise, nutrition, and rest</p>
       </div>
-    </section>
-
-    <!-- Assessment Section -->
-    <section id="assessment" class="section hidden">
-      <div class="card centered-card">
-        <h2>Assess Your Wellness</h2>
-        <p>The quiz will go here once implemented.</p>
+      <div class="dimension-card">
+        <h3>Emotional Wellness</h3>
+        <p>Managing emotions, stress, and building emotional intelligence</p>
       </div>
-    </section>
-
-    <!-- Focus Area Section -->
-    <section id="focus" class="section hidden">
-      <div class="card centered-card">
-        <h2>Choose Your Area of Focus</h2>
-        <div id="focus-options" class="card-grid"></div>
+      <div class="dimension-card">
+        <h3>Intellectual Wellness</h3>
+        <p>Mental engagement, learning, and creative problem-solving</p>
       </div>
-    </section>
-
-    <!-- Hero Customization Section -->
-    <section id="hero" class="section hidden">
-      <div class="card centered-card">
-        <h2>Create Your Superhero</h2>
-        <form id="hero-form">
-          <label for="hero-name">Hero Name:</label>
-          <input type="text" id="hero-name" placeholder="Enter your hero name" required />
-
-          <label for="skin-tone">Skin Tone:</label>
-          <select id="skin-tone">
-            <option>Light</option>
-            <option>Tan</option>
-            <option>Brown</option>
-            <option>Dark</option>
-          </select>
-
-          <label for="hair-style">Hair Style:</label>
-          <select id="hair-style">
-            <option>Short</option>
-            <option>Long</option>
-            <option>Curly</option>
-            <option>Bald</option>
-          </select>
-
-          <label for="cape-style">Cape Style:</label>
-          <select id="cape-style">
-            <option>Flowing</option>
-            <option>Armored</option>
-            <option>None</option>
-          </select>
-
-          <label for="emblem">Emblem:</label>
-          <select id="emblem">
-            <option>💪</option>
-            <option>🧠</option>
-            <option>💖</option>
-            <option>🧘</option>
-            <option>🤝</option>
-            <option>🛠️</option>
-          </select>
-
-          <button type="submit" class="btn">Finish Hero</button>
-        </form>
-
-        <div id="hero-avatar" class="preview-container">
-          <p>👀 Your superhero preview will appear here.</p>
-        </div>
+      <div class="dimension-card">
+        <h3>Social Wellness</h3>
+        <p>Relationships, community connections, and communication skills</p>
       </div>
-    </section>
+      <div class="dimension-card">
+        <h3>Spiritual Wellness</h3>
+        <p>Purpose, meaning, values alignment, and inner peace</p>
+      </div>
+      <div class="dimension-card">
+        <h3>Occupational Wellness</h3>
+        <p>Work satisfaction, career growth, and work-life balance</p>
+      </div>
+    </div>
 
-  </main>
-  <script src="app.js"></script>
+    <div style="text-align: center;">
+      <button id="start-btn" class="btn primary">✨ Begin Your Wellness Journey →</button>
+    </div>
+  </section>
+
+  <!-- Stub Sections -->
+<section id="assessment" class="card hidden">
+  <h2>📝 Assess Your Wellness</h2>
+  <p>Use the sliders below to rate your current level of wellness in each area.</p>
+
+  <form id="quiz-form">
+    <div class="slider-group">
+      <label for="physical">Physical Wellness</label>
+      <input type="range" id="physical" name="physical" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="emotional">Emotional Wellness</label>
+      <input type="range" id="emotional" name="emotional" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="intellectual">Intellectual Wellness</label>
+      <input type="range" id="intellectual" name="intellectual" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="social">Social Wellness</label>
+      <input type="range" id="social" name="social" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="spiritual">Spiritual Wellness</label>
+      <input type="range" id="spiritual" name="spiritual" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="occupational">Occupational Wellness</label>
+      <input type="range" id="occupational" name="occupational" min="0" max="10" value="5">
+    </div>
+
+    <button type="submit" class="btn primary">➡️ Continue to Focus Area</button>
+  </form>
+</section>
+
+<section id="focus" class="card hidden">
+  <h2>🎯 Choose an Area to Improve</h2>
+  <p>Based on your assessment, here are the wellness areas you can focus on:</p>
+  <div id="focus-options" class="card-grid">
+    <!-- Cards will be inserted here by JavaScript -->
+  </div>
+</section>
+
+<section id="hero" class="hidden">
+  <h2>🦸 Unleash Your Wellness Superpowers</h2>
+  <p>Create your superhero identity based on your wellness strengths and focus area!</p>
+
+  <form id="hero-form">
+    <label for="hero-name">📝 Hero Name:</label>
+    <input type="text" id="hero-name" name="hero-name" required placeholder="e.g., The Resilient Radiator">
+
+    <label for="skin-tone">🎨 Skin Tone:</label>
+    <select id="skin-tone">
+      <option value="light">Light</option>
+      <option value="medium">Medium</option>
+      <option value="dark">Dark</option>
+    </select>
+
+    <label for="hair-style">💇 Hair Style:</label>
+    <select id="hair-style">
+      <option value="short">Short</option>
+      <option value="long">Long</option>
+      <option value="curly">Curly</option>
+      <option value="bald">Bald</option>
+    </select>
+
+    <label for="cape-style">🦸 Cape Style:</label>
+    <select id="cape-style">
+      <option value="flowing">Flowing</option>
+      <option value="armored">Armored</option>
+      <option value="none">None</option>
+    </select>
+
+    <label for="emblem">🌟 Chest Emblem:</label>
+    <select id="emblem">
+      <option value="physical">💪 Physical</option>
+      <option value="emotional">💖 Emotional</option>
+      <option value="intellectual">🧠 Intellectual</option>
+      <option value="social">🤝 Social</option>
+      <option value="spiritual">🧘 Spiritual</option>
+      <option value="occupational">🛠️ Occupational</option>
+    </select>
+
+    <div id="hero-preview">
+      <h3>Live Preview</h3>
+      <div id="hero-avatar">
+        <!-- SVG or layered hero will render here -->
+        <p>[Your customized hero will appear here]</p>
+      </div>
+    </div>
+
+    <button id="start-journey" class="btn">Begin My Wellness Journey</button>
+  </form>
+</section>
+
+  <!-- Load JavaScript -->
+  <script src="js/app.js" defer></script>
 </body>
 </html>
+
