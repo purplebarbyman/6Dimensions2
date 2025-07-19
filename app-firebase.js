@@ -93,18 +93,18 @@ document.addEventListener("DOMContentLoaded", () => {
         created: new Date()
       };
 
-      try {
-        const docRef = await firebase.firestore().collection("heroes").add(heroData);
-        await captureAndUploadPreview(docRef.id);
+        try {
+    const docRef = await firebase.firestore().collection("heroes").add(heroData);
+    await captureAndUploadPreview(docRef.id); // 📸 Upload preview image
 
-        alert("Superhero saved successfully!");
-        heroForm.reset();
-        document.getElementById("hero-preview").classList.add("hidden");
-        showSection("main");
-      } catch (err) {
-        console.error("Error saving superhero:", err);
-        alert("There was an error saving your superhero.");
-      }
+    alert("Superhero saved successfully!");
+    heroForm.reset();
+    document.getElementById("hero-preview").classList.add("hidden");
+    showSection("main");
+  } catch (err) {
+    console.error("Error saving superhero:", err);
+    alert("There was an error saving your superhero.");
+  }
     });
   }
 });
