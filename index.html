@@ -5,9 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wellness Superhero Builder</title>
-  <link rel="stylesheet" href="./style-dark.css" />
-  <script src="./app-fixed.js" defer></script>
-  <!-- Firebase App (core) -->
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
+
+<!-- Firebase App (core) -->
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 <script>
@@ -23,6 +24,7 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 </script>
+
 </head>
 <body>
   <header>
@@ -30,18 +32,10 @@
   </header>
 
   <div id="main" class="card">
-  <h2>The 6 Dimensions of Wellness</h2>
-  <p>Learn about each wellness area below before beginning your superhero journey.</p>
-  <div class="dimension-grid">
-    <div class="dimension-card"><h3>Physical Wellness</h3><p>Your body’s health and vitality through exercise, nutrition, and rest.</p></div>
-    <div class="dimension-card"><h3>Emotional Wellness</h3><p>Managing emotions, stress, and building emotional intelligence.</p></div>
-    <div class="dimension-card"><h3>Intellectual Wellness</h3><p>Mental engagement, learning, and creative problem-solving.</p></div>
-    <div class="dimension-card"><h3>Social Wellness</h3><p>Relationships, community connections, and communication skills.</p></div>
-    <div class="dimension-card"><h3>Spiritual Wellness</h3><p>Purpose, meaning, values alignment, and inner peace.</p></div>
-    <div class="dimension-card"><h3>Occupational Wellness</h3><p>Work satisfaction, career growth, and work-life balance.</p></div>
+    <h2>Welcome!</h2>
+    <p>Explore the 6 Dimensions of Wellness and create your own superhero based on your strengths and goals.</p>
+    <button class="btn" onclick="goto('assessment')">Begin Your Hero Journey</button>
   </div>
-  <button class="btn primary" onclick="goto('assessment')">Start My Assessment</button>
-</div>
 
   <div id="assessment" class="card hidden">
     <h2>Assess Your Wellness</h2>
@@ -72,6 +66,7 @@
       <button class="btn primary" type="submit">Finish & See Hero</button>
     </form>
   </div>
-<script src="./app-fixed.js" defer></script> 
+
+  <script src="app.js"></script>
 </body>
 </html>
