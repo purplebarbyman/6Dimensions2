@@ -1,5 +1,3 @@
-
-
 function goto(section) {
   document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
   const active = document.getElementById(section);
@@ -206,3 +204,5 @@ function getPreviewColor(theme) {
   };
   return colors[theme] || colors.default;
 }
+
+}); // Close DOMContentLoaded
