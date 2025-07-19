@@ -46,6 +46,7 @@ function renderFocusCards() {
   const scores = JSON.parse(localStorage.getItem("wellnessScores")) || {};
   const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
   const top = sorted.slice(0, 2).map(entry => entry[0]);
+  showTopStrengths(top);
   localStorage.setItem("topDimensions", JSON.stringify(top));
 
   const all = ["physical", "emotional", "intellectual", "social", "spiritual", "occupational"];
@@ -94,11 +95,6 @@ Emoji: ${data.emoji}`);
   }
 });
 
-// Hook up preview listeners
-document.querySelector('input[name="powerWord"]').addEventListener("input", updateHeroPreview);
-document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-document.querySelector('select[name="tagline"]').addEventListener("change", updateHeroPreview);
 
 function populateTaglines(focusArea) {
   const taglineSelect = document.getElementById("tagline-select");
@@ -147,33 +143,18 @@ function populateTaglines(focusArea) {
   });
 }
 
-function updateHeroPreview() {
-  const name = document.querySelector('input[name="powerWord"]').value;
-  const emoji = document.querySelector('input[name="emoji"]:checked')?.value || "🦸";
-  const tagline = document.querySelector('select[name="tagline"]').value;
-  const color = document.querySelector('input[name="costume"]:checked')?.value || "default";
-
-  const preview = document.getElementById("hero-preview");
-  const emojiEl = document.getElementById("preview-emoji");
-  const nameEl = document.getElementById("preview-name");
-  const taglineEl = document.getElementById("preview-tagline");
-
-  if (!preview || !emojiEl || !nameEl || !taglineEl) return;
-
-  preview.classList.remove("hidden");
-  preview.style.background = getPreviewColor(color);
-  emojiEl.textContent = emoji;
-  nameEl.textContent = name || "Your Hero Name";
-  taglineEl.textContent = tagline || "Your motivational tagline will appear here.";
+function showTopStrengths(strengths) {
+  const container = document.getElementById("focus-top-strengths");
+  if (!container) return;
+  container.innerHTML = `
+    <h3>Your Strongest Wellness Dimensions:</h3>
+    <ul>
+      ${strengths.map(dim => `<li><strong>${capitalize(dim)}</strong></li>`).join("")}
+    </ul>
+    <p>Now choose one area you'd like to improve and focus on.</p>
+  `;
 }
 
-function getPreviewColor(theme) {
-  const colors = {
-    blue: "#1e3a8a",
-    red: "#991b1b",
-    green: "#166534",
-    purple: "#6b21a8",
-    default: "#2a2a2a"
-  };
-  return colors[theme] || colors.default;
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
