@@ -5,30 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wellness Superhero Builder</title>
-
-  <!-- CSS First -->
-  <link rel="stylesheet" href="./style-dark.css" />
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-
-  <!-- Firebase Config -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDQBSIDPhHoPgMFR_qi0Ftvzfr5SokSB2U",
-      authDomain: "superhero-f8206.firebaseapp.com",
-      projectId: "superhero-f8206",
-      storageBucket: "superhero-f8206.firebasestorage.app",
-      messagingSenderId: "751716778701",
-      appId: "1:751716778701:web:e0d2c714e5c2f617cc9f84",
-      measurementId: "G-2W7R2XHFHC"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
-<script src="capture-preview.js"></script>
-
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js" defer></script>
 </head>
 <body>
   <header>
@@ -36,18 +14,10 @@
   </header>
 
   <div id="main" class="card">
-  <h2>The 6 Dimensions of Wellness</h2>
-  <p>Learn about each wellness area below before beginning your superhero journey.</p>
-  <div class="dimension-grid">
-    <div class="dimension-card"><h3>Physical Wellness</h3><p>Your body’s health and vitality through exercise, nutrition, and rest.</p></div>
-    <div class="dimension-card"><h3>Emotional Wellness</h3><p>Managing emotions, stress, and building emotional intelligence.</p></div>
-    <div class="dimension-card"><h3>Intellectual Wellness</h3><p>Mental engagement, learning, and creative problem-solving.</p></div>
-    <div class="dimension-card"><h3>Social Wellness</h3><p>Relationships, community connections, and communication skills.</p></div>
-    <div class="dimension-card"><h3>Spiritual Wellness</h3><p>Purpose, meaning, values alignment, and inner peace.</p></div>
-    <div class="dimension-card"><h3>Occupational Wellness</h3><p>Work satisfaction, career growth, and work-life balance.</p></div>
+    <h2>Welcome!</h2>
+    <p>Explore the 6 Dimensions of Wellness and create your own superhero based on your strengths and goals.</p>
+    <button class="btn" onclick="showSection('assessment')">Begin Your Hero Journey</button>
   </div>
-  <button onclick="showSection('assessment')">
-</div>
 
   <div id="assessment" class="card hidden">
     <h2>Assess Your Wellness</h2>
@@ -56,55 +26,38 @@
     <button class="btn" onclick="submitAssessment()">Continue to Focus Area</button>
   </div>
 
-<div id="focus" class="card hidden">
-  <h2>Choose Your Area of Focus</h2>
+  <div id="focus" class="card hidden">
+    <h2>Choose Your Area of Focus</h2>
+    <div id="focus-options"></div>
+  </div>
 
-  <div id="focus-top-strengths" style="margin-bottom: 1rem;"></div>
-  <div id="focus-options"></div>
-</div>
+  <div id="hero" class="card hidden">
+    <h2>Customize Your Superhero</h2>
+    <form id="heroForm">
+      <label>Power Word / Trait: <input type="text" name="powerWord" required></label><br/><br/>
+      <label>Costume Color Theme:
+        <select name="costume">
+          <option value="blue">Bold Blue</option>
+          <option value="red">Radiant Red</option>
+          <option value="green">Glowing Green</option>
+          <option value="purple">Powerful Purple</option>
+        </select>
+      </label><br/><br/>
+      <label>Motivational Tagline: <input type="text" name="tagline" required></label><br/><br/>
+      <label>Emoji/Icon Identity: <input type="text" name="emoji" maxlength="2" required></label><br/><br/>
+      <button class="btn primary" type="submit">Finish & See Hero</button>
+    </form>
+  </div>
 
-<div id="hero" class="card hidden">
-  <h2>Customize Your Superhero</h2>
-  <form id="heroForm">
-    <label>Superhero Name (Power Word):<br/>
-      <input type="text" name="powerWord" required placeholder="e.g. The Energizer">
-    </label><br/><br/>
+  <script src="app.js"></script>
 
-    <label>Costume Theme:</label><br/>
-    <div class="swatch-row">
-      <label><input type="radio" name="costume" value="blue" required><span class="swatch blue"></span> Bold Blue</label>
-      <label><input type="radio" name="costume" value="red"><span class="swatch red"></span> Radiant Red</label>
-      <label><input type="radio" name="costume" value="green"><span class="swatch green"></span> Glowing Green</label>
-      <label><input type="radio" name="costume" value="purple"><span class="swatch purple"></span> Powerful Purple</label>
-    </div><br/>
-
-    <label>Motivational Tagline:</label><br/>
-    <select name="tagline" id="tagline-select" required>
-      <option value="">-- Select a tagline based on your focus area --</option>
-    </select><br/><br/>
-
-    <label>Emoji/Icon Identity:</label><br/>
-    <div class="emoji-picker">
-      <label><input type="radio" name="emoji" value="💪" required> 💪</label>
-      <label><input type="radio" name="emoji" value="🧠"> 🧠</label>
-      <label><input type="radio" name="emoji" value="💖"> 💖</label>
-      <label><input type="radio" name="emoji" value="🌱"> 🌱</label>
-      <label><input type="radio" name="emoji" value="🦸"> 🦸</label>
-      <label><input type="radio" name="emoji" value="✨"> ✨</label>
-      <label><input type="radio" name="emoji" value="🛡️"> 🛡️</label>
-      <label><input type="radio" name="emoji" value="🎯"> 🎯</label>
-      <label><input type="radio" name="emoji" value="🔥"> 🔥</label>
-    </div><br/>
-
-    <button class="btn primary" type="submit">Finish & Save Hero</button>
-  </form>
-<!-- Live Preview Box -->
-<div id="hero-preview" class="card hidden" style="text-align:center; margin-top:2rem;">
-  <div id="preview-emoji" style="font-size: 3rem;">🦸</div>
-  <h3 id="preview-name">Your Hero Name</h3>
-  <p id="preview-tagline">Your motivational tagline will appear here.</p>
-</div>
-<script src="app-firebase.js"></script>  <!-- or rename to app-firebase.js -->
-<script src="capture-preview.js"></script>
+<script>
+function showSection(sectionId) {
+  document.querySelectorAll(".card").forEach(card => card.classList.add("hidden"));
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.remove("hidden");
+}
+</script>
 </body>
 </html>
+
