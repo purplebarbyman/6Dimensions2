@@ -7,7 +7,6 @@ function goto(section) {
     active.classList.remove('hidden');
     if (section === "assessment") renderSliders();
     if (section === "focus") renderFocusCards();
-  }
 }
 
 
@@ -83,15 +82,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const heroForm = document.getElementById("heroForm");
   if (heroForm) {
-    heroForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(heroForm).entries());
-      console.log("Hero Data:", data);
-      alert(`Hero Created!
-Name: ${data.powerWord}
-Tagline: "${data.tagline}"
-Emoji: ${data.emoji}`);
-    });
+heroForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(heroForm).entries());
+  const heroData = {
+    name: data.powerWord,
+    emoji: data.emoji,
+    costume: data.costume,
+    tagline: data.tagline,
+    focusArea: localStorage.getItem("focusArea") || "",
+    strengths: JSON.parse(localStorage.getItem("topDimensions") || "[]"),
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  try {
+    const docRef = await firebase.firestore().collection("heroes").add(heroData);
+    await captureAndUploadPreview(docRef.id); // 📸 Save image to Firebase Storage
+    alert("✅ Your superhero was saved and image uploaded!");
+    goto("gallery");
+  } catch (err) {
+    console.error("Error saving hero:", err);
+    alert("❌ Something went wrong. Please try again.");
   }
 });
 
