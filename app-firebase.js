@@ -75,6 +75,8 @@ function renderFocusCards() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const focusArea = localStorage.getItem("focusArea");
+  if (focusArea) populateTaglines(focusArea);
   renderSliders();
   renderFocusCards();
 
@@ -91,3 +93,51 @@ Emoji: ${data.emoji}`);
     });
   }
 });
+
+
+function populateTaglines(focusArea) {
+  const taglineSelect = document.getElementById("tagline-select");
+  if (!taglineSelect) return;
+
+  const taglinesByFocus = {
+    physical: [
+      "Strong body, strong mind.",
+      "Fueling my fire.",
+      "Movement is my power."
+    ],
+    emotional: [
+      "I lead with resilience.",
+      "I feel deeply and stand strong.",
+      "Mastering my emotions."
+    ],
+    intellectual: [
+      "Curiosity is my compass.",
+      "I grow through knowledge.",
+      "My mind is my might."
+    ],
+    social: [
+      "Connection gives me strength.",
+      "Together we rise.",
+      "Relationships are my superpower."
+    ],
+    spiritual: [
+      "Purpose drives me.",
+      "I walk in alignment.",
+      "Peace is my power."
+    ],
+    occupational: [
+      "I build with passion.",
+      "Balance fuels my growth.",
+      "Purpose in every task."
+    ]
+  };
+
+  const taglines = taglinesByFocus[focusArea] || [];
+  taglineSelect.innerHTML = '<option value="">-- Select a tagline based on your focus area --</option>';
+  taglines.forEach(tagline => {
+    const option = document.createElement("option");
+    option.value = tagline;
+    option.textContent = tagline;
+    taglineSelect.appendChild(option);
+  });
+}
