@@ -124,11 +124,6 @@ document.querySelector('#creator .next').onclick = ()=> {
   goto('results');
 };
 
-function goto(id) {
-  document.querySelectorAll(".section").forEach(s => s.classList.add("hidden"));
-  document.getElementById(id).classList.remove("hidden");
-}
-
 function topTwo(){
   return Object.entries(state.scores)
     .sort((a,b)=>b[1]-a[1]).slice(0,2).map(([d])=>d);
@@ -200,5 +195,3 @@ function goto(id){
   document.getElementById(id).classList.remove('hidden');
 }
 function caps(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-// On load, show welcome screen
-window.onload = () => goto('welcome');
