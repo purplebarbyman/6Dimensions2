@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Wellness Superhero Builder</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -12,37 +13,42 @@
     <h1>Unleash Your Wellness Superpowers</h1>
   </header>
 
-  <main>
-    <!-- Start Screen -->
-    <section id="start" class="card">
-      <h2>Welcome!</h2>
-      <p>Discover your strongest wellness powers and create your superhero identity.</p>
-      <button class="btn" onclick="goto('assessment')">Begin Your Hero Journey</button>
-    </section>
+  <div id="main" class="card">
+    <h2>Welcome!</h2>
+    <p>Explore the 6 Dimensions of Wellness and create your own superhero based on your strengths and goals.</p>
+    <button class="btn" onclick="goto('assessment')">Begin Your Hero Journey</button>
+  </div>
 
-    <!-- Assessment Screen (to be dynamically filled) -->
-    <section id="assessment" class="card hidden">
-      <h2>Assess Your Wellness</h2>
-      <div id="assessment-form"></div>
-    </section>
+  <div id="assessment" class="card hidden">
+    <h2>Assess Your Wellness</h2>
+    <p>Rate yourself in each dimension of wellness:</p>
+    <div id="sliders"></div>
+    <button class="btn" onclick="submitAssessment()">Continue to Focus Area</button>
+  </div>
 
-    <!-- Focus Selection -->
-    <section id="focus" class="card hidden">
-      <h2>Choose Your Area of Focus</h2>
-      <div id="focus-options"></div>
-    </section>
+  <div id="focus" class="card hidden">
+    <h2>Choose Your Area of Focus</h2>
+    <div id="focus-options"></div>
+  </div>
 
-    <!-- Hero Customization -->
-    <section id="hero" class="card hidden">
-      <h2>Create Your Superhero</h2>
-      <div id="hero-builder"></div>
-    </section>
+  <div id="hero" class="card hidden">
+    <h2>Customize Your Superhero</h2>
+    <form id="heroForm">
+      <label>Power Word / Trait: <input type="text" name="powerWord" required></label><br/><br/>
+      <label>Costume Color Theme:
+        <select name="costume">
+          <option value="blue">Bold Blue</option>
+          <option value="red">Radiant Red</option>
+          <option value="green">Glowing Green</option>
+          <option value="purple">Powerful Purple</option>
+        </select>
+      </label><br/><br/>
+      <label>Motivational Tagline: <input type="text" name="tagline" required></label><br/><br/>
+      <label>Emoji/Icon Identity: <input type="text" name="emoji" maxlength="2" required></label><br/><br/>
+      <button class="btn primary" type="submit">Finish & See Hero</button>
+    </form>
+  </div>
 
-    <!-- Summary -->
-    <section id="summary" class="card hidden">
-      <h2>Your Wellness Hero Summary</h2>
-      <div id="summary-content"></div>
-    </section>
-  </main>
+  <script src="app.js"></script>
 </body>
 </html>
