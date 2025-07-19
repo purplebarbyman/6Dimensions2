@@ -1,69 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Wellness Superhero Builder</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <title>Wellness Superhero Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<header>
-  <h1>Unleash Your Wellness Superpowers</h1>
-</header>
+  <header>
+    <h1>Unleash Your Wellness Superpowers</h1>
+  </header>
 
-<!-- STEP 0 – Welcome Screen -->
-<section id="welcome" class="card">
-  <h2>🦸‍♂️ Welcome to the Wellness Superhero Builder</h2>
-  <p>Discover your wellness superpowers through the Six Dimensions of Wellness</p>
+  <!-- Welcome Screen -->
+  <section id="welcome" class="card">
+    <h2>🦸‍♂️ Welcome to the Wellness Superhero Builder</h2>
+    <p>Discover your wellness superpowers through the Six Dimensions of Wellness</p>
 
-  <div class="dimension-grid">
-    <!-- six cards here -->
-  </div>
-
-  <button id="start-btn" class="btn primary">✨ Begin Your Wellness Journey →</button>
-</section> <!-- 🔐 CLOSE WELCOME -->
-
-<!-- ✅ Now start the next sections outside the welcome area -->
-<section id="assessment" class="card hidden">
-  <h2>📝 Assess Your Wellness</h2>
-  <p>This section will show the quiz once it's implemented.</p>
-</section>
-<section id="focus" class="card hidden">...</section>
-<section id="creator" class="card hidden">...</section>
-<section id="results" class="card hidden">...</section>
-
-
-  <div class="dimension-grid">
-    <div class="dimension-card">
-      <h3>Physical Wellness</h3>
-      <p>Your body’s health and vitality through exercise, nutrition, and rest</p>
+    <div class="dimension-grid">
+      <div class="dimension-card">
+        <h3>Physical Wellness</h3>
+        <p>Your body’s health and vitality through exercise, nutrition, and rest</p>
+      </div>
+      <div class="dimension-card">
+        <h3>Emotional Wellness</h3>
+        <p>Managing emotions, stress, and building emotional intelligence</p>
+      </div>
+      <div class="dimension-card">
+        <h3>Intellectual Wellness</h3>
+        <p>Mental engagement, learning, and creative problem-solving</p>
+      </div>
+      <div class="dimension-card">
+        <h3>Social Wellness</h3>
+        <p>Relationships, community connections, and communication skills</p>
+      </div>
+      <div class="dimension-card">
+        <h3>Spiritual Wellness</h3>
+        <p>Purpose, meaning, values alignment, and inner peace</p>
+      </div>
+      <div class="dimension-card">
+        <h3>Occupational Wellness</h3>
+        <p>Work satisfaction, career growth, and work-life balance</p>
+      </div>
     </div>
-    <div class="dimension-card">
-      <h3>Emotional Wellness</h3>
-      <p>Managing emotions, stress, and building emotional intelligence</p>
-    </div>
-    <div class="dimension-card">
-      <h3>Intellectual Wellness</h3>
-      <p>Mental engagement, learning, and creative problem-solving</p>
-    </div>
-    <div class="dimension-card">
-      <h3>Social Wellness</h3>
-      <p>Relationships, community connections, and communication skills</p>
-    </div>
-    <div class="dimension-card">
-      <h3>Spiritual Wellness</h3>
-      <p>Purpose, meaning, values alignment, and inner peace</p>
-    </div>
-    <div class="dimension-card">
-      <h3>Occupational Wellness</h3>
-      <p>Work satisfaction, career growth, and work-life balance</p>
-    </div>
-  </div>
 
-  <button id="start-btn" class="btn primary">✨ Begin Your Wellness Journey →</button>
-</section>
+    <div style="text-align: center;">
+      <button id="start-btn" class="btn primary">✨ Begin Your Wellness Journey →</button>
+    </div>
+  </section>
 
-<!-- Placeholder for the rest of the site like assessment, focus, creator, results -->
-<script src="js/app.js" defer></script>
+  <!-- Stub Sections -->
+  <section id="assessment" class="card hidden">
+    <h2>📝 Assess Your Wellness</h2>
+    <p>This section will show the quiz once it's implemented.</p>
+  </section>
+
+  <section id="focus" class="card hidden">
+    <h2>🎯 Choose Your Focus Area</h2>
+    <p>This section will ask what you want to improve on.</p>
+  </section>
+
+  <section id="creator" class="card hidden">
+    <h2>🧑‍🎨 Build Your Hero</h2>
+    <p>This section will let you customize your superhero avatar.</p>
+  </section>
+
+  <section id="results" class="card hidden">
+    <h2>🌟 Your Superhero Results</h2>
+    <p>This section will show your top strengths and improvement strategies.</p>
+  </section>
+
+  <script src="js/app.js" defer></script>
 </body>
 </html>
