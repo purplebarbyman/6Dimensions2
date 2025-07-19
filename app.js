@@ -110,6 +110,22 @@ function populateChestSymbols(){
   });
 }
 
+function submitAssessment() {
+  const scores = {};
+  document.querySelectorAll(".quiz-slider").forEach(slider => {
+    scores[slider.name] = parseInt(slider.value, 10);
+  });
+
+  const sorted = Object.entries(scores)
+    .sort((a, b) => b[1] - a[1])
+    .map(entry => entry[0]);
+
+  const topTwo = sorted.slice(0, 2);
+  localStorage.setItem("topDimensions", JSON.stringify(topTwo));
+
+  goto("focus");
+}
+
 /* == 4. RESULTS & SHARE ================================================== */
 document.querySelector('#creator .next').onclick = ()=> {
   state.hero = {
