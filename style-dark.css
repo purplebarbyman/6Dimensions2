@@ -22,7 +22,7 @@ html, body {
 header {
   padding: 1rem;
   text-align: center;
-  background: #1a1a1a; /* or #222 */
+  background: var(--bg);
   color: #fff;
 }
 
