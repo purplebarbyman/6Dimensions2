@@ -1,8 +1,15 @@
 
+
 function goto(section) {
   document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
-  document.getElementById(section).classList.remove('hidden');
+  const active = document.getElementById(section);
+  if (active) {
+    active.classList.remove('hidden');
+    if (section === "assessment") renderSliders();
+    if (section === "focus") renderFocusCards();
+  }
 }
+
 
 function submitAssessment() {
   const sliders = document.querySelectorAll("#sliders input[type='range']");
