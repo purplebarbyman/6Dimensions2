@@ -49,25 +49,44 @@
   </section>
 
   <!-- Stub Sections -->
-  <section id="assessment" class="card hidden">
-    <h2>📝 Assess Your Wellness</h2>
-    <p>This section will show the quiz once it's implemented.</p>
-  </section>
+<section id="assessment" class="card hidden">
+  <h2>📝 Assess Your Wellness</h2>
+  <p>Use the sliders below to rate your current level of wellness in each area.</p>
 
-  <section id="focus" class="card hidden">
-    <h2>🎯 Choose Your Focus Area</h2>
-    <p>This section will ask what you want to improve on.</p>
-  </section>
+  <form id="quiz-form">
+    <div class="slider-group">
+      <label for="physical">Physical Wellness</label>
+      <input type="range" id="physical" name="physical" min="0" max="10" value="5">
+    </div>
 
-  <section id="creator" class="card hidden">
-    <h2>🧑‍🎨 Build Your Hero</h2>
-    <p>This section will let you customize your superhero avatar.</p>
-  </section>
+    <div class="slider-group">
+      <label for="emotional">Emotional Wellness</label>
+      <input type="range" id="emotional" name="emotional" min="0" max="10" value="5">
+    </div>
 
-  <section id="results" class="card hidden">
-    <h2>🌟 Your Superhero Results</h2>
-    <p>This section will show your top strengths and improvement strategies.</p>
-  </section>
+    <div class="slider-group">
+      <label for="intellectual">Intellectual Wellness</label>
+      <input type="range" id="intellectual" name="intellectual" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="social">Social Wellness</label>
+      <input type="range" id="social" name="social" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="spiritual">Spiritual Wellness</label>
+      <input type="range" id="spiritual" name="spiritual" min="0" max="10" value="5">
+    </div>
+
+    <div class="slider-group">
+      <label for="occupational">Occupational Wellness</label>
+      <input type="range" id="occupational" name="occupational" min="0" max="10" value="5">
+    </div>
+
+    <button type="submit" class="btn primary">➡️ Continue to Focus Area</button>
+  </form>
+</section>
 
   <!-- Load JavaScript -->
   <script src="js/app.js" defer></script>
