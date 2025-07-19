@@ -94,6 +94,11 @@ Emoji: ${data.emoji}`);
   }
 });
 
+// Hook up preview listeners
+document.querySelector('input[name="powerWord"]').addEventListener("input", updateHeroPreview);
+document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+document.querySelector('select[name="tagline"]').addEventListener("change", updateHeroPreview);
 
 function populateTaglines(focusArea) {
   const taglineSelect = document.getElementById("tagline-select");
