@@ -2,10 +2,16 @@
 :root {
   --primary: #1e90ff;
   --accent: #ff9800;
-  --bg: #fafafa;
-  --card: #fff;
-  --border: #e0e0e0;
+  --bg: #121212;
+  --card: #1e1e1e;
+  --border: #333;
+  --text: #f5f5f5;
   font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
 }
 
 html, body {
