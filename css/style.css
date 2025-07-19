@@ -18,10 +18,8 @@ html, body {
 }
 
 header {
-  padding: 1rem;
-  text-align: center;
-  background: var(--primary);
-  color: #fff;
+  background: var(--card); /* Same as the dark cards */
+  color: var(--text);
 }
 
 h1, h2, h3 {
