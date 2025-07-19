@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 <header>
   <h1>Unleash Your Wellness Superpowers</h1>
@@ -47,90 +46,7 @@
   <button class="btn primary" onclick="goto('assessment')">✨ Begin Your Wellness Journey →</button>
 </section>
 
-
-<!-- STEP 1 – Six-Dimension Assessment (all Qs on 1 page per dimension) -->
-<section id="assessment" class="card">
-  <h2>1️⃣ Assess Your Wellness</h2>
-  <form id="assessmentForm">
-    <!-- repeat block 6× with data-dimension attr -->
-    <div class="dimension" data-dimension="physical">
-      <h3>Physical Wellness</h3>
-      <label>How many days/week do you exercise?
-        <input type="number" name="physical_exercise" min="0" max="7" required>
-      </label>
-      <label>Average nightly sleep (hours)?
-        <input type="number" name="physical_sleep" min="0" max="12" step="0.5" required>
-      </label>
-      <!-- add 3 more physical questions -->
-    </div>
-
-    <!-- … Emotional, Intellectual, Social, Spiritual, Occupational blocks … -->
-
-    <button type="submit" class="btn next">Continue →</button>
-  </form>
-</section>
-
-<!-- STEP 2 – Focus-Area Selection -->
-<section id="focus" class="card hidden">
-  <h2>2️⃣ Choose a Power to Level Up</h2>
-  <p>Review your scores and pick the dimension you’d like to improve.</p>
-  <ul id="scoreList"></ul>
-  <select id="focusSelect" required></select>
-  <button class="btn next">Next →</button>
-</section>
-
-<!-- STEP 3 – Avatar Customiser -->
-<section id="creator" class="card hidden">
-  <h2>3️⃣ Create Your Superhero</h2>
-
-  <label>Hero Name
-    <input id="heroName" type="text" maxlength="20" placeholder="e.g. Captain Calm" required>
-  </label>
-
-  <div id="canvasWrapper">
-    <canvas id="heroCanvas" width="280" height="400"></canvas>
-  </div>
-
-  <details>
-    <summary>Appearance Options</summary>
-    <div class="options">
-      <label>Skin Tone <input type="color" id="skinTone"></label>
-      <label>Hair Style
-        <select id="hairStyle">
-          <option value="short">Short</option>
-          <option value="long">Long</option>
-          <option value="bun">Bun</option>
-        </select>
-      </label>
-      <label>Hair Color <input type="color" id="hairColor"></label>
-      <label>Cape Style
-        <select id="capeStyle">
-          <option value="none">None</option>
-          <option value="flowing">Flowing</option>
-          <option value="armored">Armored</option>
-        </select>
-      </label>
-      <label>Chest Symbol
-        <select id="chestSymbol"></select>
-      </label>
-    </div>
-  </details>
-
-  <button class="btn next">See Results →</button>
-</section>
-
-<!-- STEP 4 – Results & Evidence-Based Recommendations -->
-<section id="results" class="card hidden">
-  <h2>4️⃣ Your Wellness Profile</h2>
-  <div id="strengthsBlock"></div>
-  <div id="improveBlock"></div>
-
-  <button id="downloadBtn" class="btn">Download PNG</button>
-  <button id="jsonBtn" class="btn">Export Profile (JSON)</button>
-  <button id="emailBtn" class="btn primary">Share via Email</button>
-  <a href="gallery.html" class="btn">Go to Shared Gallery →</a>
-</section>
-
+<!-- Placeholder for the rest of the site like assessment, focus, creator, results -->
 <script src="js/app.js" defer></script>
 </body>
 </html>
