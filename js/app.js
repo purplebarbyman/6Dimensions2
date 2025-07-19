@@ -25,11 +25,11 @@ function renderFocusCards() {
     const { name, description, emoji } = DIMENSION_DETAILS[dimension];
     const card = document.createElement("div");
     card.className = "focus-card";
-    card.innerHTML = \`
-      <div class="card-header">\${emoji} <strong>\${name}</strong></div>
-      <p>\${description}</p>
-      <button class="btn small" data-dimension="\${dimension}">Focus Here</button>
-    \`;
+    card.innerHTML = `
+      <div class="card-header">${emoji} <strong>${name}</strong></div>
+      <p>${description}</p>
+      <button class="btn small" data-dimension="${dimension}">Focus Here</button>
+    `;
     container.appendChild(card);
   });
 
@@ -58,14 +58,14 @@ function setupHeroForm() {
     const topDims = JSON.parse(localStorage.getItem("topDimensions")) || [];
     const focus = localStorage.getItem("focusArea") || "N/A";
 
-    preview.innerHTML = \`
+    preview.innerHTML = `
       <div class="preview-card">
-        <h4>\${name}</h4>
-        <p>🖌️ Skin: \${skin}, Hair: \${hair}, Cape: \${cape}, Emblem: \${emblem}</p>
-        <p>🧬 Strengths: \${topDims.join(", ")}</p>
-        <p>🎯 Focus Area: \${focus}</p>
+        <h4>${name}</h4>
+        <p>🖌️ Skin: ${skin}, Hair: ${hair}, Cape: ${cape}, Emblem: ${emblem}</p>
+        <p>🧬 Strengths: ${topDims.join(", ")}</p>
+        <p>🎯 Focus Area: ${focus}</p>
       </div>
-    \`;
+    `;
   });
 
   form.addEventListener("submit", (e) => {
@@ -74,7 +74,6 @@ function setupHeroForm() {
   });
 }
 
-// Define dimension details if not defined globally
 const DIMENSION_DETAILS = {
   physical: { name: "Physical", emoji: "💪", description: "Boost your energy and endurance." },
   emotional: { name: "Emotional", emoji: "💖", description: "Manage stress and express emotions." },
