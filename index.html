@@ -57,23 +57,42 @@
     <div id="focus-options"></div>
   </div>
 
-  <div id="hero" class="card hidden">
-    <h2>Customize Your Superhero</h2>
-    <form id="heroForm">
-      <label>Power Word / Trait: <input type="text" name="powerWord" required></label><br/><br/>
-      <label>Costume Color Theme:
-        <select name="costume">
-          <option value="blue">Bold Blue</option>
-          <option value="red">Radiant Red</option>
-          <option value="green">Glowing Green</option>
-          <option value="purple">Powerful Purple</option>
-        </select>
-      </label><br/><br/>
-      <label>Motivational Tagline: <input type="text" name="tagline" required></label><br/><br/>
-      <label>Emoji/Icon Identity: <input type="text" name="emoji" maxlength="2" required></label><br/><br/>
-      <button class="btn primary" type="submit">Finish & See Hero</button>
-    </form>
-  </div>
+<div id="hero" class="card hidden">
+  <h2>Customize Your Superhero</h2>
+  <form id="heroForm">
+    <label>Superhero Name (Power Word):<br/>
+      <input type="text" name="powerWord" required placeholder="e.g. The Energizer">
+    </label><br/><br/>
+
+    <label>Costume Theme:</label><br/>
+    <div class="swatch-row">
+      <label><input type="radio" name="costume" value="blue" required><span class="swatch blue"></span> Bold Blue</label>
+      <label><input type="radio" name="costume" value="red"><span class="swatch red"></span> Radiant Red</label>
+      <label><input type="radio" name="costume" value="green"><span class="swatch green"></span> Glowing Green</label>
+      <label><input type="radio" name="costume" value="purple"><span class="swatch purple"></span> Powerful Purple</label>
+    </div><br/>
+
+    <label>Motivational Tagline:</label><br/>
+    <select name="tagline" id="tagline-select" required>
+      <option value="">-- Select a tagline based on your focus area --</option>
+    </select><br/><br/>
+
+    <label>Emoji/Icon Identity:</label><br/>
+    <div class="emoji-picker">
+      <label><input type="radio" name="emoji" value="💪" required> 💪</label>
+      <label><input type="radio" name="emoji" value="🧠"> 🧠</label>
+      <label><input type="radio" name="emoji" value="💖"> 💖</label>
+      <label><input type="radio" name="emoji" value="🌱"> 🌱</label>
+      <label><input type="radio" name="emoji" value="🦸"> 🦸</label>
+      <label><input type="radio" name="emoji" value="✨"> ✨</label>
+      <label><input type="radio" name="emoji" value="🛡️"> 🛡️</label>
+      <label><input type="radio" name="emoji" value="🎯"> 🎯</label>
+      <label><input type="radio" name="emoji" value="🔥"> 🔥</label>
+    </div><br/>
+
+    <button class="btn primary" type="submit">Finish & Save Hero</button>
+  </form>
+</div>
 
   
 </body>
