@@ -5,6 +5,14 @@
   font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
+#welcome {
+  background: linear-gradient(to bottom right, #e0f7fa, #f1f8e9);
+  text-align: center;
+}
+#welcome h2 {
+  margin-top: 0;
+}
+
 html,body{margin:0;background:var(--bg);}
 header{padding:1rem;text-align:center;background:var(--primary);color:#fff;}
 h1,h2{margin:.5em 0;}

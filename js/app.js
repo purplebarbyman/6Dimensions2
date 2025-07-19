@@ -195,3 +195,5 @@ function goto(id){
   document.getElementById(id).classList.remove('hidden');
 }
 function caps(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+// On load, show welcome screen
+window.onload = () => goto('welcome');
