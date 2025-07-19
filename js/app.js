@@ -1,106 +1,44 @@
 
-function goto(sectionId) {
-  document.querySelectorAll("section").forEach((s) => s.classList.add("hidden"));
-  const target = document.getElementById(sectionId);
-  if (target) {
-    target.classList.remove("hidden");
-    target.scrollIntoView({ behavior: "smooth" });
-  } else {
-    console.warn(`Section with ID "${sectionId}" not found.`);
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  goto("welcome");
-
-  const startButton = document.getElementById("start-btn");
-  if (startButton) {
-    startButton.addEventListener("click", () => {
-      goto("assessment");
-    });
-  }
-
-  const form = document.getElementById("quiz-form");
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const scores = {
-        physical: parseInt(document.getElementById("physical").value, 10),
-        emotional: parseInt(document.getElementById("emotional").value, 10),
-        intellectual: parseInt(document.getElementById("intellectual").value, 10),
-        social: parseInt(document.getElementById("social").value, 10),
-        spiritual: parseInt(document.getElementById("spiritual").value, 10),
-        occupational: parseInt(document.getElementById("occupational").value, 10)
-      };
-      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-      const topTwo = sorted.slice(0, 2).map(entry => entry[0]);
-      localStorage.setItem("topDimensions", JSON.stringify(topTwo));
-      goto("focus");
-    });
-  }
-
-  renderFocusCards();
+  renderFocusCards(); // already defined previously
+  setupHeroForm();
 });
 
-const DIMENSION_DETAILS = {
-  physical: {
-    name: "Physical Wellness",
-    description: "Improve strength, flexibility, sleep, and energy through exercise and healthy habits.",
-    emoji: "💪"
-  },
-  emotional: {
-    name: "Emotional Wellness",
-    description: "Build emotional resilience, stress management, and self-awareness.",
-    emoji: "💖"
-  },
-  intellectual: {
-    name: "Intellectual Wellness",
-    description: "Stimulate your mind with creativity, critical thinking, and continuous learning.",
-    emoji: "🧠"
-  },
-  social: {
-    name: "Social Wellness",
-    description: "Strengthen relationships, build community, and improve communication skills.",
-    emoji: "🤝"
-  },
-  spiritual: {
-    name: "Spiritual Wellness",
-    description: "Connect with your values, find purpose, and explore mindfulness or meaning.",
-    emoji: "🧘"
-  },
-  occupational: {
-    name: "Occupational Wellness",
-    description: "Pursue meaningful work, maintain work-life balance, and grow professionally.",
-    emoji: "🛠️"
-  }
-};
+function goto(sectionId) {
+  document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+  const target = document.getElementById(sectionId);
+  if (target) target.classList.remove("hidden");
 
-function renderFocusCards() {
-  const top = JSON.parse(localStorage.getItem("topDimensions")) || [];
-  const all = Object.keys(DIMENSION_DETAILS);
-  const choices = all.filter(d => !top.includes(d));
+  // Scroll to top of the new section
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-  const container = document.getElementById("focus-options");
-  if (!container) return;
+function setupHeroForm() {
+  const form = document.getElementById("hero-form");
+  const preview = document.getElementById("hero-avatar");
 
-  container.innerHTML = "";
-  choices.forEach(dimension => {
-    const { name, description, emoji } = DIMENSION_DETAILS[dimension];
-    const card = document.createElement("div");
-    card.className = "focus-card";
-    card.innerHTML = `
-      <div class="card-header">${emoji} <strong>${name}</strong></div>
-      <p>${description}</p>
-      <button class="btn small" data-dimension="${dimension}">Focus Here</button>
+  if (!form) return;
+
+  form.addEventListener("input", () => {
+    const name = document.getElementById("hero-name").value || "Your Hero";
+    const skin = document.getElementById("skin-tone").value;
+    const hair = document.getElementById("hair-style").value;
+    const cape = document.getElementById("cape-style").value;
+    const emblem = document.getElementById("emblem").value;
+
+    preview.innerHTML = `
+      <div class="preview-card">
+        <h4>${name}</h4>
+        <p>🖌️ Skin: ${skin}, Hair: ${hair}, Cape: ${cape}, Emblem: ${emblem}</p>
+        <p>🧬 Strengths: ${JSON.parse(localStorage.getItem("topDimensions")).join(", ")}</p>
+        <p>🎯 Focus Area: ${localStorage.getItem("focusArea")}</p>
+      </div>
     `;
-    container.appendChild(card);
   });
 
-  container.querySelectorAll("button").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const selected = btn.getAttribute("data-dimension");
-      localStorage.setItem("focusArea", selected);
-      goto("hero");
-    });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Hero Created! (You can implement export/email next)");
+    // You could also save hero profile here or navigate to gallery step
   });
 }
