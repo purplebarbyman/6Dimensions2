@@ -86,6 +86,13 @@
     </section>
 
   </main>
+  <script>
+  // TEMPORARY: Set default topDimensions to simulate quiz results
+  if (!localStorage.getItem("topDimensions")) {
+    localStorage.setItem("topDimensions", JSON.stringify(["emotional", "intellectual"]));
+  }
+</script>
+
   <script src="app.js"></script>
 </body>
 </html>
