@@ -5,6 +5,22 @@
 <title>Team Superhero Gallery</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
+<!-- Firebase App (core) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDQBSIDPhHoPgMFR_qi0Ftvzfr5SokSB2U",
+    authDomain: "superhero-f8206.firebaseapp.com",
+    projectId: "superhero-f8206",
+    storageBucket: "superhero-f8206.firebasestorage.app",
+    messagingSenderId: "751716778701",
+    appId: "1:751716778701:web:e0d2c714e5c2f617cc9f84",
+    measurementId: "G-2W7R2XHFHC"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
 </head>
 <body>
 <header>
