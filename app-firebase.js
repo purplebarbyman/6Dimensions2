@@ -95,6 +95,11 @@ Emoji: ${data.emoji}`);
   }
 });
 
+document.querySelector('input[name="powerWord"]')?.addEventListener("input", updateHeroPreview);
+document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+document.querySelector('select[name="tagline"]')?.addEventListener("change", updateHeroPreview);
+
 
 function populateTaglines(focusArea) {
   const taglineSelect = document.getElementById("tagline-select");
@@ -157,4 +162,35 @@ function showTopStrengths(strengths) {
 
 function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function updateHeroPreview() {
+  const name = document.querySelector('input[name="powerWord"]')?.value || "";
+  const emoji = document.querySelector('input[name="emoji"]:checked')?.value || "🦸";
+  const tagline = document.querySelector('select[name="tagline"]')?.value || "";
+  const color = document.querySelector('input[name="costume"]:checked')?.value || "default";
+
+  const preview = document.getElementById("hero-preview");
+  const emojiEl = document.getElementById("preview-emoji");
+  const nameEl = document.getElementById("preview-name");
+  const taglineEl = document.getElementById("preview-tagline");
+
+  if (!preview || !emojiEl || !nameEl || !taglineEl) return;
+
+  preview.classList.remove("hidden");
+  preview.style.background = getPreviewColor(color);
+  emojiEl.textContent = emoji;
+  nameEl.textContent = name || "Your Hero Name";
+  taglineEl.textContent = tagline || "Your motivational tagline will appear here.";
+}
+
+function getPreviewColor(theme) {
+  const colors = {
+    blue: "#1e3a8a",
+    red: "#991b1b",
+    green: "#166534",
+    purple: "#6b21a8",
+    default: "#2a2a2a"
+  };
+  return colors[theme] || colors.default;
 }
