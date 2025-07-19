@@ -96,6 +96,57 @@
   </div>
 </section>
 
+<section id="hero" class="hidden">
+  <h2>🦸 Unleash Your Wellness Superpowers</h2>
+  <p>Create your superhero identity based on your wellness strengths and focus area!</p>
+
+  <form id="hero-form">
+    <label for="hero-name">📝 Hero Name:</label>
+    <input type="text" id="hero-name" name="hero-name" required placeholder="e.g., The Resilient Radiator">
+
+    <label for="skin-tone">🎨 Skin Tone:</label>
+    <select id="skin-tone">
+      <option value="light">Light</option>
+      <option value="medium">Medium</option>
+      <option value="dark">Dark</option>
+    </select>
+
+    <label for="hair-style">💇 Hair Style:</label>
+    <select id="hair-style">
+      <option value="short">Short</option>
+      <option value="long">Long</option>
+      <option value="curly">Curly</option>
+      <option value="bald">Bald</option>
+    </select>
+
+    <label for="cape-style">🦸 Cape Style:</label>
+    <select id="cape-style">
+      <option value="flowing">Flowing</option>
+      <option value="armored">Armored</option>
+      <option value="none">None</option>
+    </select>
+
+    <label for="emblem">🌟 Chest Emblem:</label>
+    <select id="emblem">
+      <option value="physical">💪 Physical</option>
+      <option value="emotional">💖 Emotional</option>
+      <option value="intellectual">🧠 Intellectual</option>
+      <option value="social">🤝 Social</option>
+      <option value="spiritual">🧘 Spiritual</option>
+      <option value="occupational">🛠️ Occupational</option>
+    </select>
+
+    <div id="hero-preview">
+      <h3>Live Preview</h3>
+      <div id="hero-avatar">
+        <!-- SVG or layered hero will render here -->
+        <p>[Your customized hero will appear here]</p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn">Create My Hero</button>
+  </form>
+</section>
 
   <!-- Load JavaScript -->
   <script src="js/app.js" defer></script>
