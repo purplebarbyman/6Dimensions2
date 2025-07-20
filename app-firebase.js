@@ -99,12 +99,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
+    // 👇 Live Preview Listeners
     document.querySelector('input[name="powerWord"]')?.addEventListener("input", updateHeroPreview);
-    document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-    document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+    document.querySelectorAll('input[name="costume"]').forEach(el =>
+      el.addEventListener("change", updateHeroPreview)
+    );
+    document.querySelectorAll('input[name="emoji"]').forEach(el =>
+      el.addEventListener("change", updateHeroPreview)
+    );
     document.querySelector('select[name="tagline"]')?.addEventListener("change", updateHeroPreview);
   }
 
+  // 👇 Tagline options
   const focusArea = localStorage.getItem("focusArea");
   if (focusArea) populateTaglines(focusArea);
 });
