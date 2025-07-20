@@ -1,3 +1,4 @@
+
 function goto(section) {
   document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
   const active = document.getElementById(section);
@@ -73,41 +74,36 @@ function renderFocusCards() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderSliders();
-  renderFocusCards();
-
   const heroForm = document.getElementById("heroForm");
+
   if (heroForm) {
-    heroForm.addEventListener("submit", async (e) => {
+    heroForm.onsubmit = async (e) => {
       e.preventDefault();
 
-      const data = Object.fromEntries(new FormData(heroForm).entries());
+      const formData = new FormData(heroForm);
       const heroData = {
-        name: data.powerWord,
-        costume: data.costume,
-        tagline: data.tagline,
-        emoji: data.emoji,
-        created: new Date()
+        powerWord: formData.get("powerWord"),
+        costume: formData.get("costume"),
+        tagline: formData.get("tagline"),
+        emoji: formData.get("emoji"),
+        timestamp: new Date()
       };
 
       try {
         const docRef = await firebase.firestore().collection("heroes").add(heroData);
-        await captureAndUploadPreview(docRef.id); // Save image to Storage + Firestore
-        alert("Superhero saved successfully!");
-        heroForm.reset();
-        document.getElementById("hero-preview").classList.add("hidden");
-        goto("main");
+        await captureAndUploadPreview(docRef.id);
+        alert("✅ Superhero saved!");
       } catch (err) {
         console.error("❌ Error saving superhero:", err);
         alert("There was an error saving your superhero.");
       }
-    });
-  }
+    };
 
-  document.querySelector('input[name="powerWord"]')?.addEventListener("input", updateHeroPreview);
-  document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-  document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-  document.querySelector('select[name="tagline"]')?.addEventListener("change", updateHeroPreview);
+    document.querySelector('input[name="powerWord"]')?.addEventListener("input", updateHeroPreview);
+    document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+    document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+    document.querySelector('select[name="tagline"]')?.addEventListener("change", updateHeroPreview);
+  }
 
   const focusArea = localStorage.getItem("focusArea");
   if (focusArea) populateTaglines(focusArea);
@@ -183,7 +179,6 @@ function getPreviewColor(theme) {
   return colors[theme] || colors.default;
 }
 
-// 📸 Upload Preview Image
 async function captureAndUploadPreview(docId) {
   const preview = document.getElementById("hero-preview");
   if (!preview) return;
