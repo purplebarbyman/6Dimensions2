@@ -8,7 +8,6 @@ function goto(section) {
   }
 }
 
-
 function submitAssessment() {
   const sliders = document.querySelectorAll("#sliders input[type='range']");
   const scores = {};
@@ -42,7 +41,7 @@ function renderSliders() {
 
 function renderFocusCards() {
   const scores = JSON.parse(localStorage.getItem("wellnessScores")) || {};
-  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
   const top = sorted.slice(0, 2).map(entry => entry[0]);
   showTopStrengths(top);
   localStorage.setItem("topDimensions", JSON.stringify(top));
@@ -74,8 +73,6 @@ function renderFocusCards() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const focusArea = localStorage.getItem("focusArea");
-  if (focusArea) populateTaglines(focusArea);
   renderSliders();
   renderFocusCards();
 
@@ -93,63 +90,40 @@ document.addEventListener("DOMContentLoaded", () => {
         created: new Date()
       };
 
-        try {
-    const docRef = await firebase.firestore().collection("heroes").add(heroData);
-    await captureAndUploadPreview(docRef.id); // 📸 Upload preview image
-
-    alert("Superhero saved successfully!");
-    heroForm.reset();
-    document.getElementById("hero-preview").classList.add("hidden");
-    showSection("main");
-  } catch (err) {
-    console.error("Error saving superhero:", err);
-    alert("There was an error saving your superhero.");
-  }
+      try {
+        const docRef = await firebase.firestore().collection("heroes").add(heroData);
+        await captureAndUploadPreview(docRef.id); // Save image to Storage + Firestore
+        alert("Superhero saved successfully!");
+        heroForm.reset();
+        document.getElementById("hero-preview").classList.add("hidden");
+        goto("main");
+      } catch (err) {
+        console.error("❌ Error saving superhero:", err);
+        alert("There was an error saving your superhero.");
+      }
     });
   }
+
+  document.querySelector('input[name="powerWord"]')?.addEventListener("input", updateHeroPreview);
+  document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+  document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
+  document.querySelector('select[name="tagline"]')?.addEventListener("change", updateHeroPreview);
+
+  const focusArea = localStorage.getItem("focusArea");
+  if (focusArea) populateTaglines(focusArea);
 });
-
-document.querySelector('input[name="powerWord"]')?.addEventListener("input", updateHeroPreview);
-document.querySelectorAll('input[name="costume"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-document.querySelectorAll('input[name="emoji"]').forEach(el => el.addEventListener("change", updateHeroPreview));
-document.querySelector('select[name="tagline"]')?.addEventListener("change", updateHeroPreview);
-
 
 function populateTaglines(focusArea) {
   const taglineSelect = document.getElementById("tagline-select");
   if (!taglineSelect) return;
 
   const taglinesByFocus = {
-    physical: [
-      "Strong body, strong mind.",
-      "Fueling my fire.",
-      "Movement is my power."
-    ],
-    emotional: [
-      "I lead with resilience.",
-      "I feel deeply and stand strong.",
-      "Mastering my emotions."
-    ],
-    intellectual: [
-      "Curiosity is my compass.",
-      "I grow through knowledge.",
-      "My mind is my might."
-    ],
-    social: [
-      "Connection gives me strength.",
-      "Together we rise.",
-      "Relationships are my superpower."
-    ],
-    spiritual: [
-      "Purpose drives me.",
-      "I walk in alignment.",
-      "Peace is my power."
-    ],
-    occupational: [
-      "I build with passion.",
-      "Balance fuels my growth.",
-      "Purpose in every task."
-    ]
+    physical: ["Strong body, strong mind.", "Fueling my fire.", "Movement is my power."],
+    emotional: ["I lead with resilience.", "I feel deeply and stand strong.", "Mastering my emotions."],
+    intellectual: ["Curiosity is my compass.", "I grow through knowledge.", "My mind is my might."],
+    social: ["Connection gives me strength.", "Together we rise.", "Relationships are my superpower."],
+    spiritual: ["Purpose drives me.", "I walk in alignment.", "Peace is my power."],
+    occupational: ["I build with passion.", "Balance fuels my growth.", "Purpose in every task."]
   };
 
   const taglines = taglinesByFocus[focusArea] || [];
@@ -209,37 +183,36 @@ function getPreviewColor(theme) {
   return colors[theme] || colors.default;
 }
 
+// 📸 Upload Preview Image
+async function captureAndUploadPreview(docId) {
+  const preview = document.getElementById("hero-preview");
+  if (!preview) return;
 
-function generateAssessmentQuestions() {
-  const dimensions = [
-    { id: "physical", label: "Physical Wellness", description: "Energy, sleep, nutrition, and activity levels." },
-    { id: "emotional", label: "Emotional Wellness", description: "Resilience, self-awareness, and managing stress." },
-    { id: "intellectual", label: "Intellectual Wellness", description: "Learning, curiosity, and mental engagement." },
-    { id: "social", label: "Social Wellness", description: "Connections, relationships, and sense of belonging." },
-    { id: "spiritual", label: "Spiritual Wellness", description: "Purpose, values, and inner peace." },
-    { id: "occupational", label: "Occupational Wellness", description: "Work-life balance and job satisfaction." }
-  ];
+  if (typeof html2canvas === "undefined") {
+    await loadScript("https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js");
+  }
 
-  const container = document.getElementById("sliders");
-  container.innerHTML = "";
+  const canvas = await html2canvas(preview);
+  const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+  const filePath = `hero_previews/${docId}.png`;
+  const fileRef = firebase.storage().ref().child(filePath);
 
-  dimensions.forEach(dimension => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "slider-wrapper";
+  await fileRef.put(blob);
+  const downloadURL = await fileRef.getDownloadURL();
 
-    const title = document.createElement("label");
-    title.innerHTML = `<strong>${dimension.label}</strong><br/><small>${dimension.description}</small>`;
-    wrapper.appendChild(title);
+  await firebase.firestore().collection("heroes").doc(docId).update({
+    imageUrl: downloadURL
+  });
 
-    const input = document.createElement("input");
-    input.type = "range";
-    input.min = "1";
-    input.max = "10";
-    input.value = "5";
-    input.name = dimension.id;
-    input.className = "slider";
-    wrapper.appendChild(input);
+  console.log("✅ Preview image uploaded and saved.");
+}
 
-    container.appendChild(wrapper);
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
   });
 }
